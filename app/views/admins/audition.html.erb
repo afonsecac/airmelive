@@ -1,0 +1,44 @@
+<div class="container">
+
+<h4 align="center"><%= @event.eventname.upcase %></h4>
+<div class="row">
+    <%= image_tag @event.cloud_url ,:class => 'image_show_up' %>
+</div>
+
+<br><legend>Participants</legend><br>
+
+<% if @users %>
+  <% @users.each do |t| %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= t.name %>
+      </div>
+      <div class="col-md-6">
+        <form action= "https://talkgadget.google.com/hangouts/_" method = "GET">
+        <input type = "hidden" name = "gid" value = "1009023439918">
+        <input type = "hidden" name = "hso" value = "0">
+        <select name= "gd">
+        <option><%= t.id %></option>
+        </select>
+        <input type="submit" value="Hangout"/>
+        </form>
+      </div>
+    </div><br>
+  <% end %>
+<% else %>
+    <h1> No Participants</h1>
+<% end %>
+
+
+
+<script src="//hagoutsapi.talkgadget.google.com/talkgadget/apps/gadgets/js/rpc.js"></script>
+<script src="//hagoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
+<script src="//www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jquery", "1.7.1");</script>
+
+========================================================
+
+
+
+
+

@@ -1,0 +1,93 @@
+<style>
+  #main_contain{
+    background-image:url('http://ppcdn.500px.org/55334198/cca1354f36c6c3c3e4fdba64a2b55f063812d9d2/2048.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:auto;
+      }
+      h5{
+        color:white;
+      }
+</style>
+<div id="main_contain">
+  <header id="header" class="header"  data-offset-top="20" style="background-color:#0B243B" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><span style="color:white">AIRME</span><span style="color:green">LIVE</span></h1>
+      </div>
+      <div class="col-md-6">
+        <%= link_to "Explore", home_path, :class =>  "btn btn-success btn-sm", :style => "float:right"%>
+      </div>
+    </div>
+  </div>
+</header>
+  
+
+
+  <div class="row"  style="margin-top:500px;">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <h6 style="color:red;"><%= flash[:error] %></h6>
+      <span id="signinButton">
+        <span
+          class="g-signin"
+          data-callback="signinCallback"
+          data-clientid="191444374770-fjnace5l9n20phsj5hjdutesmgvri9pt.apps.googleusercontent.com"
+          data-clientsecret="dB2xBwxF-BxT_kGKP0nGUpNk"
+          data-cookiepolicy="single_host_origin"
+          data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email">
+        </span>
+      </span>
+  
+
+      
+
+      <%= form_tag(:controller => "users", :action => "new", :method => "post") do %>
+        <div class="is-this-you"></div>
+        <%= hidden_field_tag :fullname %>
+        <%= hidden_field_tag :gplus %>
+        <%= hidden_field_tag :email %>
+      <% end %>
+    </div>  
+
+      <script type="text/javascript">
+        (function() {
+           var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/client:plusone.js';
+           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+
+        function signinCallback(authResult) {
+          var token = gapi.auth.getToken();
+          var accessToken = token.access_token;
+          if (authResult['access_token']) {
+            var accessUrl = 'https://www.googleapis.com/plus/v1/people/me?access_token=' + accessToken;
+            $.ajax({
+              type: 'GET',
+              url: accessUrl,
+              async: false,
+              contentType: 'application/json',
+              dataType: 'jsonp',
+              success: function(data) {
+                var originalImage = data.image.url;
+                var imageUrl = originalImage.slice(0, -2);
+                var gplusImage = imageUrl + "200";
+                $('#fullname').val(data.displayName);
+                $('#gplus').val(data.id);
+                $('#email').val(data.emails[0].value)
+                $('.is-this-you').html("<h5>" + data.displayName + "</h5><br><input type='submit' class ='btn btn-mini btn-success' value='Login or Register'>");
+              },
+              error: function(e) {
+                console.log(e);
+              }
+            });
+          } else if (authResult['error']) {
+              $('.is-this-you').html("<h4>Your request could not be completed at this time</h4>");
+            };
+        }
+      </script>
+    
+  </div>
+  <br><br><br>
+</div>

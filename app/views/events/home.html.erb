@@ -1,0 +1,153 @@
+<div class = "container">
+
+  <legend class="section"><a href="/upcomingevents"><h3 style="color:green">Upcoming Events</h3></a></legend>
+<div class ="row">
+  <% if @up_events.empty? %> 
+
+    <h4 align="center"> No Upcoming Events!!! </h4>
+
+  <% else %>
+    <div class="col-md-12"> 
+    <!-- Mango Flip List that triggers every 3 seconds -->
+      <div class="list-tile mango">
+          <ul class="flip-list fourTiles" data-mode="flip-list" data-delay="2000">
+              <li>
+                  <div><% if @up_events[0] %><a href="/upcomingevents/<%= @up_events[0].id%>/show"><%= image_tag @up_events[0].cloud_url %></a>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+                  <div><% if @up_events[1] %><a href="/upcomingevents/<%= @up_events[1].id%>/show"><%= image_tag @up_events[1].cloud_url %></a>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+              </li>
+              <li>
+                  <div><% if @up_events[2] %><a href="/upcomingevents/<%= @up_events[2].id%>/show"><%= image_tag @up_events[2].cloud_url %></a>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+                  <div><% if @up_events[3] %><a href="/upcomingevents/<%= @up_events[3].id%>/show"><%= image_tag @up_events[3].cloud_url %></a>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+              </li>
+              <li>
+                  <div><% if @up_events[4] %><a href="/upcomingevents/<%= @up_events[4].id%>/show"><%= image_tag @up_events[4].cloud_url %></a>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+                  <div><% if @up_events[5] %><a href="/upcomingevents/<%= @up_events[5].id%>/show"><%= image_tag @up_events[5].cloud_url %></a>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+              </li>
+              <li data-direction="horizontal">
+                  <div><% if @up_events[6] %><a href="/upcomingevents/<%= @up_events[6].id%>/show"><%= image_tag @up_events[6].cloud_url %></a>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+                  <div><% if @up_events[7] %><a href="/upcomingevents/<%= @up_events[7].id%>/show"><%= image_tag @up_events[7].cloud_url %></a>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+              </li>
+          </ul>
+      </div>
+    </div>
+
+    <% end %>
+</div>
+<legend class="section"><a href="/ongoingevents"><h3 style="color:green">Ongoing Events</h3></a></legend>
+<div class ="row">
+  <% if @on_events.empty? %> 
+
+    <h4 align="center"> No Ongoing Events!!! </h4>
+
+  <% else %>
+
+     <div class="col-md-12"> 
+    <!-- Mango Flip List that triggers every 3 seconds -->
+      <div class="list-tile mango">
+          <ul class="flip-list fourTiles" data-mode="flip-list" data-delay="2000">
+              <li>
+                  <div><% if @on_events[0] %><%= image_tag @on_events[0].cloud_url %>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+                  <div><% if @on_events[1] %><%= image_tag @on_events[1].cloud_url %>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+              </li>
+              <li>
+                  <div><% if @on_events[2] %><%= image_tag @on_events[2].cloud_url %>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+                  <div><% if @on_events[3] %><%= image_tag @on_events[3].cloud_url %>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+              </li>
+              <li>
+                  <div><% if @on_events[4] %><%= image_tag @on_events[4].cloud_url %>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+                  <div><% if @on_events[5] %><%= image_tag @on_events[5].cloud_url %>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+              </li>
+              <li data-direction="horizontal">
+                  <div><% if @on_events[6] %><%= image_tag @on_events[6].cloud_url %>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+                  <div><% if @on_events[7] %><%= image_tag @on_events[7].cloud_url %>
+                  <% else %> <img src= "http://3.bp.blogspot.com/-dN2U6yN_xV0/UEYxkZyU_ZI/AAAAAAAACv8/ZESkFTJT4YU/s1600/Smiley+With+Tongue+Out.jpg"><% end %></div>
+              </li>
+          </ul>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<legend class="section"><h3 style="color:green">Participants</h3></legend>
+<div class="row">
+  <% if @users.empty? %> 
+
+    <h4 align="center"> No Participants!!! </h4>
+
+  <% else %>
+
+    <div id="participants" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" style="background-color:white;">
+        
+        <div class="item active">
+          <div class="col-md-2"></div>
+          <% for i in 0..3 %>
+          <% if @users[i]%>
+            <div class="col-md-2">
+              <div class="thumbnail">
+                <a href="/public_profile/<%= @users[i].id %>/"><%= image_tag @users[i].user_cloud_url ,:class => 'image_show' %></a>
+                <div class="caption">
+                  <p><%= @users[i].name %></p>
+                </div>
+              </div>
+            </div>
+            <%end%>
+          <% end %>
+        </div>
+        <% k = 4 %>
+        <% for i in 0...round(@users.count-4) %>
+          <div class="item">
+            <div class="col-md-2"></div>
+            <% for j in k...k+4 %>
+              <% if @users[j]%>
+                <div class="col-md-2">
+                  <div class="thumbnail">
+                    <a href="/public_profile/<%= @users[j].id %>/"><%= image_tag @users[j].user_cloud_url ,:class => 'image_show' %></a>
+                    <div class="caption">
+                      <p><%= @users[j].name %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              <% k = j+1 %>
+            <% end %>
+          </div>
+        <% end %>
+   
+    </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#participants" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" style="color:green;"></span>
+      </a>
+      <a class="right carousel-control" href="#participants" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" style="color:green;"></span>
+      </a>
+    </div>
+
+  <%end%>
+</div>
+<script type="text/javascript">
+    // apply regular slide universally unless .exclude class is applied
+    // NOTE: The default options for each liveTile are being pulled from the 'data-' attributes
+    $(".live-tile, .flip-list").not(".exclude").liveTile();
+</script>
+</div>
+
+ 

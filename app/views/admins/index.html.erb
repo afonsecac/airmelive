@@ -1,0 +1,126 @@
+<div class ="container">
+    <div class="row">
+
+      <div class="col-md-2"><%= link_to  "Events" , show_path %> </div>
+
+      <div class="col-md-8" style = "border:solid ">
+        
+          <legend><h1 style = "color:green">Create Event</h1></legend><br>
+         <%= form_for @event,:html => { :multipart => true }, :url => {:controller => "admins", :action => "create"} do |f| %>
+            <%= flash[:notice] %>
+            <%= @file.public_url if @file%>
+            <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :eventname %>:
+                </div>
+                <div class="col-md-4">
+                    <%= f.text_field :eventname%>
+                </div>    
+            </div>
+            <br>
+            <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :category %>:
+                </div>
+                <div class="col-md-4">
+                    <%= f.text_field :category%>
+                </div>    
+            </div>
+            <br>
+             <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :registrationopen %>:
+                </div>
+                <div class="col-md-4">
+                    <%= f.text_field :registrationopen, :id => 'datetimepicker1'  %>
+                </div>    
+            </div>
+            <br>
+            <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :registrationclose %>:
+                </div>
+                <div class="col-md-4">
+                    <%= f.text_field :registrationclose, :id => 'datetimepicker2'  %>
+                </div>    
+            </div>
+            <br>
+            <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :auditionopen %>:
+                </div>
+                <div class="col-md-4">
+                    <%= f.text_field :auditionopen, :id => 'datetimepicker3'  %>
+                </div>    
+            </div>
+            <br>
+            <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :auditionclose %>:
+                </div>
+                <div class="col-md-4">
+                    <%= f.text_field :auditionclose, :id => 'datetimepicker4'  %>
+                </div>    
+            </div>
+            <br>
+            <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :eventopen %>:
+                </div>
+                <div class="col-md-4">
+                    <%= f.text_field :eventopen, :id => 'datetimepicker5'  %>
+                </div>    
+            </div>
+            <br>
+            <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :eventclose %>:
+                </div>
+                <div class="col-md-4">
+                    <%= f.text_field :eventclose, :id => 'datetimepicker6'  %>
+                </div>    
+            </div>
+            <br>
+            <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :description %>:
+                </div>
+                <div class="col-md-4">
+                    <%= f.text_area :description%>
+                </div>    
+            </div>
+            <br>
+             <div class = "row">                  
+                <div class="col-md-3">
+                    <%= f.label :rules %>:
+                </div>
+                <div class="col-md-4">
+                   <%= f.text_area :rules%>
+                </div>    
+            </div>
+            <br>              
+            <%= f.file_field :avatar %><br>
+            <%= button_tag 'Reset', :type => 'reset' %>
+            <%= f.submit "Create" %>
+          <% end %>
+        <br>
+      </div>
+
+      <div class="col-md-2"></div>
+
+    </div>
+</div> 
+<br><br><br>
+<script>
+$( document ).ready(function() {
+    $('#datetimepicker1').datetimepicker();
+    $('#datetimepicker2').datetimepicker();
+    $('#datetimepicker3').datetimepicker();
+    $('#datetimepicker4').datetimepicker();
+    $('#datetimepicker5').datetimepicker();
+    $('#datetimepicker6').datetimepicker();
+});
+</script>
+<legend><br><br></legend>  
+
+

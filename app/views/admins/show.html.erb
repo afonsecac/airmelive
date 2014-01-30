@@ -1,0 +1,148 @@
+<div class = "container">
+  <% if @upcoming_events.empty? %> 
+
+  	<h1 align="center"> No Upcoming Events!!! </h1>
+
+  <% else %> 
+
+    <h3 style="color:green">Upcoming Events</h3>
+    <div class="row">
+      
+    <% @upcoming_events.each do |t| %>
+      
+      <div class="col-md-4">
+        <div class="thumbnail">
+        	<p><%=  t.eventname.upcase %> </p>
+          <%= image_tag t.cloud_url ,:class => 'image_show' %>
+          <div class="caption">
+            <p><%= t.description %></p>               
+	            <div class ="row">
+	             		<div class= "col-md-1">  </div>
+	             		<div class = "col-md-2">
+				            <%= button_to "Edit",  edit_admin_path(t), class: "btn btn-success" %>
+				          </div>
+				          <div class= "col-md-2">  </div>
+				          <div class= "col-md-2">  </div>
+				          <div class= "col-md-2">  	
+		             		<%= button_to "Delete", delete_event_path(t),:confirm => "Do you want to delete this event?",class: "btn btn-danger" %>
+		             	</div>	
+	            </div>           
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+    </div>
+    <% end %>
+    <legend><br></legend><br>
+
+  <% if @ongoing_events.empty? %> 
+
+  	<h1 align="center"> No Ongoing Events!!! </h1>
+
+  <% else %> 
+
+    <h3 style="color:green">Ongoing Events</h3>
+    <div class="row">
+      
+    <% @ongoing_events.each do |t| %>
+      
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <p><%=  t.eventname.upcase %> </p>
+          <%= image_tag t.cloud_url ,:class => 'image_show' %>
+         	<div class="caption">
+            <p><%= t.description %></p>               
+            	<div class ="row">
+	             		<div class= "col-md-1">  </div>
+	             		<div class = "col-md-2">
+				            <%= button_to "Edit",  edit_admin_path(t), class: "btn btn-success" %>
+				          </div>
+				          <div class= "col-md-2">  </div>
+				          <div class= "col-md-2">  </div>
+				          <div class= "col-md-2">  	
+		             		<%= button_to "Delete", delete_event_path(t),:confirm => "Do you want to delete this event?", class: "btn btn-danger" %>
+		             	</div>	
+	            </div>                      
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+    </div>
+    <% end %>  
+    <legend><br></legend><br>
+
+    <% if @auditioning_events.empty? %> 
+
+    <h1 align="center"> No Auditioning Events!!! </h1>
+
+  <% else %> 
+
+    <h3 style="color:green">Auditioning Events</h3>
+    <div class="row">
+      
+    <% @auditioning_events.each do |t| %>
+      
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <p><%= link_to t.eventname.upcase , audition_path(t),:style => 'text-decoration: none'  %> </p>
+          <%= image_tag t.cloud_url ,:class => 'image_show' %>
+          <div class="caption">
+            <p><%= t.description %></p>               
+              <div class ="row">
+                  <div class= "col-md-1">  </div>
+                  <div class = "col-md-2">
+                    <%= button_to "Edit",  edit_admin_path(t), class: "btn btn-success" %>
+                  </div>
+                  <div class= "col-md-2">  </div>
+                  <div class= "col-md-2">  </div>
+                  <div class= "col-md-2">   
+                    <%= button_to "Delete", delete_event_path(t),:confirm => "Do you want to delete this event?", class: "btn btn-danger" %>
+                  </div>  
+              </div>                      
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+    </div>
+    <% end %>  
+
+    <legend><br></legend><br>
+
+  <% if @event_list.empty? %> 
+
+  	<h1 align="center"> No Events!!! </h1>
+
+  <% else %> 
+
+    <h3 style="color:green">All Events</h3>
+    <div class="row">      
+	    <% @event_list.each do |t| %>	      
+	      <div class="col-md-4">
+	        <div class="thumbnail">
+	        	<p><%=  t.eventname.upcase %> </p>
+	          <%= image_tag t.cloud_url ,:class => 'image_show' %>
+	          <div class="caption">
+	            <p><%= t.description %></p>               
+	             	<div class ="row">
+	             		<div class= "col-md-1">  </div>
+	             		<div class = "col-md-2">
+				            <%= button_to "Edit",  edit_admin_path(t), class: "btn btn-success" %>
+				          </div>
+				          <div class= "col-md-2">  </div>
+				          <div class= "col-md-2">  </div>
+				          <div class= "col-md-2">  	
+		             		<%= button_to "Delete", delete_event_path(t),:confirm => "Do you want to delete this event?", class: "btn btn-danger" %>
+		             	</div>	
+	            	</div>                  
+	          </div>
+	        </div>
+	      </div>
+
+	    <% end %>
+    </div>
+  <% end %>   
+</div>
+<legend><br></legend><br>

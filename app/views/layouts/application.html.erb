@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>AirMeLive</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+        <% unless params[:action] == "index" and params[:controller] == "users"%>
+
+        <div id="utter-wrapper" class="color-skin-1">
+            <header id="header" class="header"  data-offset-top="10" >
+                <nav class="navbar navbar-default" role="navigation" style="background-color:#0B243B">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/home" style="color:white;"><b>AIRME<span style="color:green;">LIVE</span></a></b>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-ex1-collapse" style="float:right;">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown ">
+                                    <a href="/home" class="dropdown-toggle" data-toggle="dropdown" style="color:white;">Home</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/home">Home</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="/home" class="dropdown-toggle" data-toggle="dropdown" style="color:white;">Events</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/upcomingevents">Upcoming Events</a></li>
+                                        <li><a href="/ongoingevents">Ongoing Events</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;">Participants</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;">Results</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;">Contact</a>
+                                </li>
+                                <% if session[:user_id] %>
+                                    <% @user = User.find session[:user_id] %>
+                                    <% if @user.email == "airmelive@gmail.com" %>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;">Settings</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                        <%= link_to "Create", admins_path %>
+                                        </li>
+                                        <li>
+                                        <%= link_to "Events", show_path%>
+                                        </li>
+                                        <li><a href="#" id="logoutText" target='myIFrame' onclick = "startLogoutPolling();return false;">Log out</a></li>
+                                    </ul>
+                                </li>
+                                    <% else %>
+                                    <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;">Settings</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                        <%= link_to "Profile", profile_path(session[:user_id])%>
+                                        </li>
+                                        <li>
+                                        <%= link_to "Edit", edit_path(session[:user_id])%>
+                                        </li>
+                                        <li><a href="#" id="logoutText" target='myIFrame' onclick = "startLogoutPolling();return false;">Log out</a></li>
+                                    </ul>
+                                </li>
+                                <% end %>
+                                <% else %>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                        <%= link_to "Index", root_url%>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <% end %>
+
+                            </ul>
+                            <!-- /.nav -->
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container -->
+                </nav>
+                <!-- /.navbar -->
+            </header>
+            <!-- /#header -->
+  
+
+
+            <% end %>
+<% unless params[:action] == "index" and params[:controller] == "users" %>
+    <% if session[:user_id] %>
+        <% @user = User.find session[:user_id] %>
+        <%if @user.hangouturl%>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">  
+                        <div class="alert alert-success">
+                            We are waiting for you - 
+                            <a href=<%= @user.hangouturl %> class="alert-link"> Join Hangout Audition
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>
+
+<%= yield %>
+
+<br><br><br><legend><br></legend>
+
+<% unless params[:action] == "index" and params[:controller] == "users" %>
+<footer id="footer-2">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 footer-info-wrapper" style="float:left;">
+            <span>ReTouch © 2013. All Rights Reserved. <a href="http://getbootstrap.com/">Bootstrap v3.0.0</a> Powered.</span>                        
+        </div>
+        <!-- /.footer-info-wrapper -->
+        <div class="col-xs-12 col-sm-6 footer-links-wrapper" style="float:right;">
+            <ul class="list-inline">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms Of Service</a></li>
+                <li><a href="#">Disclaimer</a></li>
+            </ul>
+        </div>
+        <!-- /.footer-links-wrapper -->
+    </div>
+    <!-- /.row -->
+ </footer>
+
+ <iframe name='myIFrame' id="myIFrame" style='display:none'></iframe>
+
+ <script type="text/javascript">
+    function startLogoutPolling() {
+        window.location.href = "/log_out";
+        window.frames["myIFrame"].location = "https://www.google.com/accounts/Logout";
+        
+    }
+
+ </script>
+ <% end %>
+
+
+</body>
+</html>
+

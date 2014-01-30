@@ -1,0 +1,38 @@
+<div class = "container">
+  <% if @events.empty? %> 
+
+  	<h1 align="center"> No Upcoming Events!!! </h1>
+
+  <% else %> 
+
+    <h3 style="color:green">Upcoming Events </h3>
+    <div class="row">
+      
+    <% @events.each do |t| %>
+      
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <p><%= link_to t.eventname.upcase , upcoming_each_path(t),:style => 'text-decoration: none'  %> </p>
+          <%= image_tag t.cloud_url ,:class => 'image_show' %>
+          <div class="caption">
+            <p><%= t.description %></p>
+            <% if session[:user_id] %>
+                <% unless @user.email == "airmelive@gmail.com" %>
+                    <%= button_to "participate", upcoming_path(t), class: "btn btn-success" %>
+                <% end %>
+            <% else %>
+                <%= button_to "participate", upcoming_path(t), class: "btn btn-success" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+  
+
+    </div>
+    <% end %>
+</div>
+<br><br><br>
+<legend></legend>

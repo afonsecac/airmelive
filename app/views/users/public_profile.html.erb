@@ -1,0 +1,90 @@
+<section id="main-and-sidebar" class="pad-25">
+    <div class="container offset2">
+        <div class="row">
+            <div class="col-md-4 main">
+                <h2><%= @user.name.upcase %></h2><br>
+                <div class="img-thumbnail">
+                    <%= image_tag @user.user_cloud_url, :size => "250x250" %>
+                </div>
+            </div>
+            <div class="col-md-4 main">
+                <h5><%= @user.name %></h5><br>
+                <h5><%= @user.age %></h5><br>
+                <h5><%= @user.city %></h5><br>
+                <h5><%= @user.country %></h5><br>
+                <h5><%= @user.email %></h5><br><br><br><br><br><br><br>
+            </div>
+        </div>
+
+        <legend class="section"><br></legend>
+        
+        <div class="row">
+            <div class="col-md-12 main">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5>Likes / Hobbies  </h5></div>
+                    <h6><%= @user.likes %></h6>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5>Dislikes  </h5></div>
+                    <h6><%= @user.dislikes %></h6>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5>Ambition  </h5></div>
+                    <h6><%= @user.ambition %></h6>
+                </div>
+                 <div class="panel panel-primary">
+                    <div class="panel-heading"><h5>Talents  </h5></div>
+                    <h6><%= @user.talent %></h6>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5>About me  </h5></div>
+                    <h6><%= @user.aboutme %></h6>
+                </div>
+            </div>
+        </div>
+        
+        <legend class="section"><h3>Participating Events</h3></legend>
+        
+        
+<% unless @user.events.empty? %>
+  
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <% t = @user.events.sort.first %>
+      <div class="item active">
+        <a href="/upcomingevents/<%= t.id %>/show"><%= image_tag t.cloud_url ,:class => 'image_slider' %></a>
+        <div class="carousel-caption">
+          <b style="color:white;"><%= t.eventname %></b>
+        </div>
+      </div>
+      <% user_events = @user.events.sort%>
+      <% for i in 1..user_events.count %>
+          <% if user_events[i] %>
+              <div class="item">
+                <a href="/upcomingevents/<%= user_events[i].id %>/show"><%= image_tag user_events[i].cloud_url ,:class => 'image_slider' %></a>
+                <div class="carousel-caption">
+                 <b style="color:white;"> <%= user_events[i].eventname %></b>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+
+<% end %>
+        <legend class="section"><br></legend>
+
+    </div>
+</section>
+
+
